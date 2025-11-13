@@ -2,10 +2,9 @@
 #include "raylib.h"
 #include <iostream>
 
-extern "C" {
-    #include "lua.h"
-    #include "lauxlib.h"
-}
+// Luau headers (C++ API, no extern "C" needed)
+#include "lua.h"
+#include "lualib.h"
 
 // clearBackground(r, g, b)
 static int clearBackgroundLua(lua_State* luaState) {
@@ -47,17 +46,17 @@ void registerGfxBindings(lua_State* luaState) {
     // Create a 'gfx' table/namespace
     lua_newtable(luaState);
     
-    // Register functions in the gfx table
-    lua_pushcfunction(luaState, clearBackgroundLua);
+    // Register functions in the gfx table - note the debug name parameter
+    lua_pushcfunction(luaState, clearBackgroundLua, "clearBackground");
     lua_setfield(luaState, -2, "clearBackground");
     
-    lua_pushcfunction(luaState, drawCircleLua);
+    lua_pushcfunction(luaState, drawCircleLua, "drawCircle");
     lua_setfield(luaState, -2, "drawCircle");
     
-    lua_pushcfunction(luaState, endDrawingLua);
+    lua_pushcfunction(luaState, endDrawingLua, "endDrawing");
     lua_setfield(luaState, -2, "endDrawing");
     
-    lua_pushcfunction(luaState, beginDrawingLua);
+    lua_pushcfunction(luaState, beginDrawingLua, "beginDrawing");
     lua_setfield(luaState, -2, "beginDrawing");
     
     // Set the table as a global named 'gfx'

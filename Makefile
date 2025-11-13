@@ -1,6 +1,6 @@
 CXX = clang++
-CXXFLAGS = -std=c++17 $(shell pkg-config --cflags raylib) -Iengine/vendor $(shell pkg-config --cflags lua)
-LDFLAGS = $(shell pkg-config --libs raylib) $(shell pkg-config --libs lua)
+CXXFLAGS = -std=c++17 $(shell pkg-config --cflags raylib) -Iengine/luau/include
+LDFLAGS = $(shell pkg-config --libs raylib) -Lengine/luau/lib -lLuau.VM -lLuau.Compiler -lLuau.Ast -lLuau.Common
 
 all: bin/main
 

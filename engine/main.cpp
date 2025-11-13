@@ -3,12 +3,8 @@
 #include <iostream>
 #include <string>
 
-// Luau / Lua headers – adjust the path based on how you vendor Luau
-extern "C" {
-    #include "lua.h"
-    #include "lauxlib.h"
-    #include "lualib.h"
-}
+#include "lua.h"
+#include "lualib.h"
 
 // Forward declarations from other engine files
 lua_State* createLuauState();
